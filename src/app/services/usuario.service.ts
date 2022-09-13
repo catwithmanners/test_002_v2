@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +27,11 @@ export class UsuarioService {
       tipo_usuario: 'alumno'
     }
   ];
+  //VAMOS A CREAR LA VARIABLE QUE SE ENCARGARA DE VER SI TENGO UNA SESION ACTIVA O NO
+  isAuthenticated = new BehaviorSubject(false);
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   //métodos:
   addUsuario(usuario) {
@@ -61,8 +66,23 @@ export class UsuarioService {
 
   //métodos customer:
   loginUsuario(correo, clave) {
-    return this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
+   var usuarioLogin = this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
+   if (usuarioLogin != undefined){
+     this.isAuthenticated.next(true);
+     return usuarioLogin;
+   }
+    //return this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
   }
+
+  getAuth(){
+    return this.isAuthenticated.value;
+  }
+  
+  logout(){
+    this.isAuthenticated.next(false);
+    this.router.navigate(['/login']);
+  }
+
   validarCorreo(correo){
     return this.usuarios.find(usu => usu.correo == correo);
   }
