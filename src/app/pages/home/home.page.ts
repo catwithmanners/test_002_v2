@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit{
 
-  constructor() {}
+  //Vamos a crear una variable que reciba los datos del usuario desde login:
+  usuario: any;
+
+  constructor(private router: Router) {}
 
   ngOnInit(){
+    this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
     
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -32,11 +32,17 @@ export class LoginPage implements OnInit {
     var usuarioLogin = this.usuarioService.loginUsuario(correoValidar, claveValidar);
     //validamos si existe el usuario
     if(usuarioLogin != undefined){
+      var navigationExtras : NavigationExtras = {
+        state: {
+          usuario: usuarioLogin
+        }
+      };
+
       //redirigimos dependiente del tipo de usuario
       if (usuarioLogin.tipo_usuario == 'administrador') {
         this.router.navigate(['/administrador']);
       }else{
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home'], navigationExtras);
       }
     }else{
       alert('Usuario o contraseña incorrectos!')
