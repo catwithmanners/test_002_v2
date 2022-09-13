@@ -48,5 +48,4 @@ export class LoginPage implements OnInit {
       alert('Usuario o contraseña incorrectos!')
     }
   }
-
 }

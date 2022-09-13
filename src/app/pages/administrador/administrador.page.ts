@@ -103,4 +103,9 @@ export class AdministradorPage implements OnInit {
     }
   }
 
+  //método para cerrar sesión:
+  logout(){
+    this.usuarioService.logout();
+  }
+
 }
