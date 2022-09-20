@@ -18,10 +18,10 @@ export class UsuarioService {
       clave: 'administrador',
       tipo_usuario: 'administrador'
     },{
-      rut: '18.999.000-1',
-      nombre: 'Elvis',
-      ap_paterno: 'Tek',
-      fecha_nac: '1990-06-10',
+      rut: '18.356.303-3',
+      nombre: 'Jeremy',
+      ap_paterno: 'Rodriguez',
+      fecha_nac: '1992-12-14',
       correo: 'alumno@duocuc.cl',
       clave: 'alumno',
       tipo_usuario: 'alumno'

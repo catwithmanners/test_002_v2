@@ -39,11 +39,9 @@ export class LoginPage implements OnInit {
       };
 
       //redirigimos dependiente del tipo de usuario
-      if (usuarioLogin.tipo_usuario == 'administrador') {
-        this.router.navigate(['/administrador']);
-      }else{
-        this.router.navigate(['/home'], navigationExtras);
-      }
+      this.router.navigate(['/home'], navigationExtras);
+      this.usuario.reset();
+      
     }else{
       alert('Usuario o contraseña incorrectos!')
     }

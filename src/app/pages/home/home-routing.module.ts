@@ -6,6 +6,16 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    children: [
+      {
+        path: 'administrador',
+        loadChildren: () => import('../administrador/administrador.module').then( m => m.AdministradorPageModule),
+      },
+      {
+        path: 'perfil/:rut',
+        loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
+      },
+    ]
   }
 ];
 
