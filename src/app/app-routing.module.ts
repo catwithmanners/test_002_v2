@@ -34,9 +34,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/geo/geo.module').then( m => m.GeoPageModule)
   },
   {
+    path: 'mantenedor',
+    loadChildren: () => import('./pages/mantenedor/mantenedor.module').then( m => m.MantenedorPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
+
 ];
 
 @NgModule({
