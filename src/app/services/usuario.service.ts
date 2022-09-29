@@ -18,18 +18,18 @@ export class UsuarioService {
       clave: 'administrador',
       tipo_usuario: 'administrador'
     },{
-      rut: '18.356.303-3',
-      nombre: 'Jeremy',
-      ap_paterno: 'Rodriguez',
-      fecha_nac: '1992-12-14',
+      rut: '18.999.000-1',
+      nombre: 'Elvis',
+      ap_paterno: 'Tek',
+      fecha_nac: '1990-06-10',
       correo: 'alumno@duocuc.cl',
       clave: 'alumno',
       tipo_usuario: 'alumno'
     }
   ];
-  //VAMOS A CREAR LA VARIABLE QUE SE ENCARGARA DE VER SI TENGO UNA SESION ACTIVA O NO
-  isAuthenticated = new BehaviorSubject(false);
 
+  //VAMOS A CREAR LA VARIABLE QUE SE ENCARGARÁ DE SABER SI TENGO UNA SESIÓN ACTIVA O NO:
+  isAuthenticated = new BehaviorSubject(false);
 
   constructor(private router: Router) { }
 
@@ -66,22 +66,22 @@ export class UsuarioService {
 
   //métodos customer:
   loginUsuario(correo, clave) {
-   var usuarioLogin = this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
-   if (usuarioLogin != undefined){
-     this.isAuthenticated.next(true);
-     return usuarioLogin;
-   }
+    var usuarioLogin = this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
+    if (usuarioLogin != undefined) {
+      this.isAuthenticated.next(true);
+      return usuarioLogin;
+    }
     //return this.usuarios.find(usu => usu.correo == correo && usu.clave == clave);
   }
-
   getAuth(){
     return this.isAuthenticated.value;
   }
-  
   logout(){
     this.isAuthenticated.next(false);
     this.router.navigate(['/login']);
   }
+
+
 
   validarCorreo(correo){
     return this.usuarios.find(usu => usu.correo == correo);

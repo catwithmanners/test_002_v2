@@ -5,7 +5,9 @@
 </ion-header>
 
 <ion-content>
+
   <ngx-qrcode [elementType]="elementType" [value]="value"></ngx-qrcode>
-  <ion-input placeholder="Ingrese texto" [(ngModel)]="value" disabled=""></ion-input>
-  <ion-button (click)="generarQR()">GENERAR QR</ion-button>
+  <ion-input placeholder="ingrese texto" [(ngModel)]="value" disabled="true"></ion-input>
+  <ion-button (click)="generarQR()">COMENZAR CLASE</ion-button>
+
 </ion-content>

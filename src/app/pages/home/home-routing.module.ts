@@ -9,12 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: 'administrador',
-        loadChildren: () => import('../administrador/administrador.module').then( m => m.AdministradorPageModule),
+        loadChildren: () => import('../administrador/administrador.module').then(m => m.AdministradorPageModule)
       },
       {
         path: 'perfil/:rut',
         loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
-      },
+      }
+
     ]
   }
 ];
@@ -23,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomePageRoutingModule {}
+export class HomePageRoutingModule { }

@@ -16,14 +16,14 @@ export class LoginPage implements OnInit {
     clave: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)])
   });
 
-  constructor(private router: Router, private usuarioService: UsuarioService) {}
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
-  ngOnInit(){
-    
+  ngOnInit() {
+
   }
 
   //crear nuestro métodos:
-  ingresar(){
+  ingresar() {
     //rescatamos las variables del formulario por separado:
     var correoValidar = this.usuario.controls.correo.value;
     var claveValidar = this.usuario.controls.clave.value;
@@ -31,8 +31,9 @@ export class LoginPage implements OnInit {
     //rescatamos el usuario con el método login usuario:
     var usuarioLogin = this.usuarioService.loginUsuario(correoValidar, claveValidar);
     //validamos si existe el usuario
-    if(usuarioLogin != undefined){
-      var navigationExtras : NavigationExtras = {
+    if (usuarioLogin != undefined) {
+      //AQUI, ANTES DE REDIRECCIONAR HACIA OTRA PÁGINA, PREPARAREMOS LOS DATOS QUE QUEREMOS ENVIAR:
+      var navigationExtras: NavigationExtras = {
         state: {
           usuario: usuarioLogin
         }
@@ -41,9 +42,10 @@ export class LoginPage implements OnInit {
       //redirigimos dependiente del tipo de usuario
       this.router.navigate(['/home'], navigationExtras);
       this.usuario.reset();
-      
-    }else{
+
+    } else {
       alert('Usuario o contraseña incorrectos!')
     }
   }
+
 }

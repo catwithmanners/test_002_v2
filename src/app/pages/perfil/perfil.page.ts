@@ -8,16 +8,17 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  //VAMOS A CREAR LAS VARIABLES NECESARIAS PARA RECIBIR EL DATO
+
+  //VAMOS A CREAR LAS VARIABLES NECESARIAS PARA RECIBIR EL DATO:
   rut: string;
-  usuario: any;
+  usuario : any;
 
   constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.rut = this.activatedRoute.snapshot.paramMap.get('rut');
     this.usuario = this.usuarioService.getUsuario(this.rut);
-    console.table(this.usuario); //Esto muestra los datos en la consola en forma de tabla
+    console.table(this.usuario);
   }
 
 }
