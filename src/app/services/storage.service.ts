@@ -15,8 +15,11 @@ export class StorageService {
   //Métodos del crud del storage:
   async agregar(key, dato){
     this.datos = await this.storage.get(key) || [];
-    var datoEncontrado = await this.getDato(key, dato.id);
-    if (datoEncontrado == undefined){
+    //VERIFICAR SI EL DATO ENTRANTE TIENE ID
+    //Si tiene id, buscamos si existe, si no existe, se debe crear uno
+    if (dato.id == '') {
+      var id = this.datos.length +1 || 1;
+      dato.id = id;
       this.datos.push(dato);
       await this.storage.set(key, this.datos);
       return true;
@@ -29,16 +32,29 @@ export class StorageService {
     return this.datos.find(dato => dato.id == identificador);
   }
 
-  getDatos(){
+  async getDatos(key){
+    this.datos = await this.storage.get(key) || [];
+    return this.datos;
+  }
+
+  async eliminar(key, identificador){
+    this.datos = await this.storage.get(key) || [];
+    this.datos.forEach((value, index) => {
+      if(value.id == identificador) {
+        this.datos.splice(index, 1);
+      }
+    });
+
+    await this.storage.set(key, this.datos);
 
   }
 
-  eliminar(){
+  async actualizar(key, dato){
+    this.datos = await this.storage.get(key) || [];
+    var index = this.datos.findIndex(value => value.id == dato.id);
+    this.datos[index] = dato;
 
-  }
-
-  actualizar(){
-
+    await this.storage.set(key, this.datos);
   }
 
 }

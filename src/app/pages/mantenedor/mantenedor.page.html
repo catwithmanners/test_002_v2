@@ -6,4 +6,28 @@
 
 <ion-content>
 
+  <ion-card>
+
+    <ion-item>
+      <ion-label position="fixed">Rut</ion-label>
+      <ion-input [(ngModel)]="dato.rut" type="text" placeholder="Ingrese rut"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Nombre</ion-label>
+      <ion-input [(ngModel)]="dato.nombre" type="text" placeholder="Ingrese nombre"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="registrar()" expand="full" color="success">Registrar</ion-button>
+    <ion-button (click)="modificar()" expand="full" color="warning">Modificar</ion-button>
+  
+  </ion-card>
+  <h1>LISTA DE PERSONAS</h1>
+  <ion-list *ngFor="let d of datos">
+    <ion-item (click)="cargar(d.id)">
+      <p>ID:{{ d.id }}  - Rut:{{d.rut}}  - Nombre:{{d.nombre}}  </p>
+      <ion-button (click)="eliminar(d.id)" color="danger">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
